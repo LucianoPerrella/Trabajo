@@ -10,7 +10,7 @@ def suma_elementos_matriz(matriz):
 
     return suma_total
 
-#Programa
+#Programa s
 
 matriz = [[1,2,3],[4,5,6]]
 suma = suma_elementos_matriz(matriz)
