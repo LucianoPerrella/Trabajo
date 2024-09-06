@@ -1,0 +1,55 @@
+body {
+  font-family: "Verdana", "Tahoma", "Trebuchet MS";
+}
+
+.titulo {
+  color: rgb(30, 144, 255);
+}
+
+.subtitulo {
+  color: rgb(255, 140, 0);
+}
+
+strong {
+  font-weight: bold;
+}
+
+#primer-texto {
+  color: rgb(255, 99, 71);
+}
+
+#segundo-texto {
+  color: rgb(154, 205, 50);
+}
+
+#tercer-texto {
+  color: rgb(255, 182, 193);
+}
+
+#cuarto-texto {
+  color: rgb(123, 104, 238);
+}
+
+#quinto-texto {
+  color: rgb(255, 105, 180);
+}
+
+#primer-texto strong {
+  color: rgb(139, 0, 0);
+}
+
+#segundo-texto strong {
+  color: rgb(85, 107, 47);
+}
+
+#tercer-texto strong {
+  color: rgb(233, 150, 122);
+}
+
+#cuarto-texto strong {
+  color: rgb(72, 61, 139);
+}
+
+#quinto-texto strong {
+  color: rgb(255, 115, 180);
+}
