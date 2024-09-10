@@ -49,12 +49,9 @@ lista_json = LeerJSON()
 palabras_nuevas,primer_deficion,segunda_definicion = cargarListas(lista_json)
 
 
-print(palabras_nuevas)
 
-print(primer_deficion)
+for i in range(len(palabras_nuevas)):
+    print(f"{palabras_nuevas[i]}"
+        f"\n -Primer definición: {primer_deficion[i]}",
+        f"\n -Segunda definición: {segunda_definicion[i]}")
 
-print(segunda_definicion)
-
-print(len(palabras_nuevas))
-print(len(primer_deficion))
-print(len(segunda_definicion))
