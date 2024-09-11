@@ -1,8 +1,9 @@
 import json
 
-def LeerJSON():
+
+def LeerJSON(archivo):
     lista_json = []
-    with open("palabras.json", "r", encoding="utf-8") as file:
+    with open(f"{archivo}", "r", encoding="utf-8") as file:
         data = json.load(file)
         
         for clave in data.items():
@@ -41,17 +42,18 @@ def cargarListas(lista):
 
 
 #main
-
-lista_json = LeerJSON()
+ruta_json = r"C:\Users\lucia\Desktop\Trabajo\Trabajo\Programación 1\palabras.json"
+lista_json = LeerJSON(ruta_json)
 
 # print(lista_json)
 
 palabras_nuevas,primer_deficion,segunda_definicion = cargarListas(lista_json)
+print(palabras_nuevas)
+print(segunda_definicion)
 
 
-
-for i in range(len(palabras_nuevas)):
-    print(f"{palabras_nuevas[i]}"
-        f"\n -Primer definición: {primer_deficion[i]}",
-        f"\n -Segunda definición: {segunda_definicion[i]}")
+# for i in range(len(palabras_nuevas)):
+#     print(f"{palabras_nuevas[i]}"
+#         f"\n -Primer definición: {primer_deficion[i]}",
+#         f"\n -Segunda definición: {segunda_definicion[i]}")
 
