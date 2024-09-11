@@ -12,6 +12,12 @@ def LeerJSON(archivo):
 
     return lista_json
 
+def LeerDict(diccionario):
+    lista_extraida = []
+    for clave,valor in diccionario.items():
+        lista_extraida.append([clave,valor])
+    return lista_extraida
+
 
 
 
