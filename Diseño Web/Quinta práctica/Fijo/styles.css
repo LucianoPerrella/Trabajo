@@ -1,12 +1,46 @@
 body {
-  width: 960 px;
+  width: 960px;
+  margin: auto;
+
 }
 
 h1 {
   text-align: center;
 }
 
-h2 + p {
-  display: inline;
+#primer_columna {
   width: 700px;
+  display: inline-block;
+  
+  ;
+  
+}
+
+#segunda_columna {
+  display: inline-block;
+  width: 260px;
+  vertical-align: top ;
+  float: left;
+  
+}
+
+#columna_personajes {
+  border: 2px solid;
+}
+
+#Principales {
+  display: inline-block;
+  width: 350px;
+  vertical-align: 350
+  ;
+  
+}
+
+#secundarios {
+  display: inline-block;
+  width: 350px;
+  vertical-align: top;
+ 
+  
+ 
 }
