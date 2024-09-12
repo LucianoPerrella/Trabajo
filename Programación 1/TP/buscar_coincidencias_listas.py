@@ -1,3 +1,4 @@
+import random
 def LeerDict(diccionario):
     lista_extraida = []
     for clave,valor in diccionario.items():
@@ -78,8 +79,9 @@ diccionario = {
   ]
 }
 
-lista = LeerDict(diccionario)
-palabras,def_01,def_02,def_03 = cargarListas(lista)
+# lista = LeerDict(diccionario)
+# palabras,def_01,def_02,def_03 = cargarListas(lista)
+
 
 
 # palabras,def_01,def_02 = cargarListas(diccionario)
@@ -89,8 +91,8 @@ palabras,def_01,def_02,def_03 = cargarListas(lista)
 
 
 
-for i in range(len(palabras)):
-    print(f"{palabras[i]}"
-        f"\n -Primer definición: {def_01[i]}",
-        f"\n -Segunda definición: {def_02[i]}",
-        f"\n -Tercera definición: {def_03[i]}")
+# for i in range(len(palabras)):
+#     print(f"{palabras[i]}"
+#         f"\n -Primer definición: {def_01[i]}",
+#         f"\n -Segunda definición: {def_02[i]}",
+#         f"\n -Tercera definición: {def_03[i]}")
