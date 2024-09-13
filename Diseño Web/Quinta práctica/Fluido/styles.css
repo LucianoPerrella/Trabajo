@@ -1,0 +1,43 @@
+body {
+  width: 80%;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+#contenedor_padre {
+  overflow: auto;
+  width: 100%;
+}
+
+#columna_mayor {
+  width: 75%;
+  overflow: auto;
+  float: right;
+}
+
+#columna_menor {
+  width: 25%;
+  overflow: auto;
+  float: left;
+}
+
+#personajes {
+  border: 1px solid black;
+  padding: 2%;
+  overflow: hidden;
+}
+
+#principales {
+  float: left;
+  overflow: hidden;
+  width: 50%;
+}
+
+#secundarios {
+  float: right;
+  overflow: hidden;
+  width: 50%;
+}
