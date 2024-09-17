@@ -10,7 +10,7 @@ def BuscarPrimerPalabra(lista):
     return palabras_para_jugar
 
 def definir_direccion(palabra,indice_coincidencia): 
-    '''Función para definiri la dirección de la palabra evaluando la cantidad de letra correspondientes antes y despues de la letra coincidente'''
+    '''Función para definir la dirección de la palabra evaluando la cantidad de letra correspondientes antes y despues de la letra coincidente'''
     flag_direccion = ""
     if len(palabra[:indice_coincidencia]) > len(palabra[indice_coincidencia + 1:]): 
         flag_direccion = "norte" 

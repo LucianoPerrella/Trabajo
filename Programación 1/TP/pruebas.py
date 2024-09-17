@@ -59,26 +59,34 @@ import random
 # tablero[9][10][0] = "o"
 # for fila in tablero:
 #          print(fila)
-def definir_direccion(palabra,indice_coincidencia): 
-    flag_direccion = ""
-    if len(palabra[:indice_coincidencia]) > len(palabra[indice_coincidencia + 1:]): 
-        flag_direccion = "norte" 
-    elif len(palabra[:indice_coincidencia]) == len(palabra[indice_coincidencia + 1:]): 
+# def definir_direccion(palabra,indice_coincidencia): 
+#     flag_direccion = ""
+#     if len(palabra[:indice_coincidencia]) > len(palabra[indice_coincidencia + 1:]): 
+#         flag_direccion = "norte" 
+#     elif len(palabra[:indice_coincidencia]) == len(palabra[indice_coincidencia + 1:]): 
         
-        random_flag = random.randint(1,2)
-        if random_flag == 1:
-            flag_direccion = "norte"
-        else:
-            flag_direccion = "sur"
+#         random_flag = random.randint(1,2)
+#         if random_flag == 1:
+#             flag_direccion = "norte"
+#         else:
+#             flag_direccion = "sur"
             
-    else: flag_direccion = "sur"
-    return flag_direccion
+#     else: flag_direccion = "sur"
+#     return flag_direccion
             
 
-palabra = "casan"
-indice = 2
+# palabra = "casan"
+# indice = 2
 
-direccion = definir_direccion(palabra,indice)
+# direccion = definir_direccion(palabra,indice)
 
-print(direccion)
+# print(direccion)
+["2","-","b","i","n","a","r","i","o"]
 
+separado = [["1","-","b","a","n","a","n","a"]]
+coincidencias = ["-",[1,3]]
+print(separado)
+print(len(separado))
+
+indice_fila_inicial = 9
+indice_fila= indice_fila_inicial - (len(separado[:(coincidencias[i][1] + 3)]))
