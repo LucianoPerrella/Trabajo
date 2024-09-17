@@ -1,0 +1,78 @@
+body {
+  background-color: #060a51;
+  font-family: "Helvetica";
+  margin: 70px;
+}
+
+p,
+h1,
+h2 {
+  color: white;
+}
+
+header {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header nav li {
+  display: inline-block;
+}
+
+#logo_encabezado {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  vertical-align: middle;
+}
+
+#logo_encabezado img {
+  width: 70px;
+  height: 100%;
+  margin-right: 20px;
+  vertical-align: middle;
+}
+
+#nombre_trexto {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+#nombre_texto h1 {
+  vertical-align: top, middle;
+}
+
+#nombre_texto p {
+  vertical-align: bottom, middle;
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#parrafo_principal {
+  width: 21%;
+}
+
+section p {
+  width: 50%;
+  columns: 2;
+}
+
+#galería ul {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+#galería ul li img {
+  width: 85%;
+}

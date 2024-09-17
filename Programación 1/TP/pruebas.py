@@ -19,19 +19,66 @@ import random
 # }
 
 # string = "agua"
-# indice_palabra = random.randint(0,2)
-# letra_palabra = string[indice_palabra]
-# siguiente_palabra = random.choice(diccionario.get((letra_palabra)))
+# indice__coincidencia_palabra = random.randint(0,2)
+# letra_palabra = string[indice__coincidencia_palabra]
+# palabra = random.choice(diccionario.get((letra_palabra)))
 # print(letra_palabra)
-# print(siguiente_palabra)
+# print(palabra)
 
 
-palabra = "mandril"
-indice = 4
+# palabra = "mandril"
+# indice__coincidencia = 4
 
 
 
-inicio= palabra[:indice -1]
-fin = palabra[indice: ]
-print(inicio)
-print(fin)
+# inicio= palabra[:indice__coincidencia -1]
+# fin = palabra[indice__coincidencia: ]
+# print(inicio)
+# print(fin)
+
+# def ConstruccionTableroVacio():
+#     '''Función encargada de generar un tablero vacio con el centro marcado con un *'''
+
+#     filas = 20
+#     columnas = 20
+#     tablero_vacio = [[list(" ") for i in range(columnas)] for i in range(filas)]
+
+#     tablero_vacio[9][9] = list("*")
+
+#     # for fila in tablero_vacio:
+#     #     print(fila)
+
+#     return tablero_vacio
+
+
+# tablero = ConstruccionTableroVacio()
+
+# tablero[9][7][0]= "1"
+# tablero[9][8][0] = "-"
+# tablero[9][9][0] = "h"
+# tablero[9][10][0] = "o"
+# for fila in tablero:
+#          print(fila)
+def definir_direccion(palabra,indice_coincidencia): 
+    flag_direccion = ""
+    if len(palabra[:indice_coincidencia]) > len(palabra[indice_coincidencia + 1:]): 
+        flag_direccion = "norte" 
+    elif len(palabra[:indice_coincidencia]) == len(palabra[indice_coincidencia + 1:]): 
+        
+        random_flag = random.randint(1,2)
+        if random_flag == 1:
+            flag_direccion = "norte"
+        else:
+            flag_direccion = "sur"
+            
+    else: flag_direccion = "sur"
+    return flag_direccion
+            
+
+palabra = "casan"
+indice = 2
+
+direccion = definir_direccion(palabra,indice)
+
+print(direccion)
+
