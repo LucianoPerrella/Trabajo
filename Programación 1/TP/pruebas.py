@@ -81,12 +81,7 @@ import random
 # direccion = definir_direccion(palabra,indice)
 
 # print(direccion)
-["2","-","b","i","n","a","r","i","o"]
 
-separado = [["1","-","b","a","n","a","n","a"]]
-coincidencias = ["-",[1,3]]
-print(separado)
-print(len(separado))
-
-indice_fila_inicial = 9
-indice_fila= indice_fila_inicial - (len(separado[:(coincidencias[i][1] + 3)]))
+o = "horizontal-"
+i = o + "norte"
+print(i)
