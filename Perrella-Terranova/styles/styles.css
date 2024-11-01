@@ -1,0 +1,195 @@
+* {
+  max-width: 1200px;
+}
+
+body {
+  font-family: "Kanit";
+}
+
+main {
+  margin: 15px;
+}
+
+#encabezado {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 15px;
+  align-items: center;
+}
+
+strong {
+  font-weight: normal;
+}
+
+header {
+  width: 40px;
+  height: 40px;
+  background-image: url(../imgs/Logo.png);
+  background-size: cover;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  text-indent: -10000;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+nav ul li {
+  text-decoration: none;
+  list-style: none;
+  margin: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  list-style: none;
+  color: black;
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-color: rgb(235, 223, 223);
+  align-items: center;
+  height: 500px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+
+section article {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 650px;
+}
+
+section article button {
+  width: 100px;
+  height: 40px;
+}
+
+section article h2 {
+  margin-left: 30px;
+  margin-top: 75px;
+  font-size: 3.2rem;
+  margin-right: 30px;
+  line-height: 3.5rem;
+}
+
+section article p {
+  margin-left: 30px;
+  margin-right: 5px;
+  margin-top: 0;
+}
+
+section aside figure {
+  margin-right: 0;
+  margin-left: 250px;
+}
+
+section article button {
+  margin-left: 30px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: rgb(0, 191, 255);
+}
+
+section article button a {
+  text-decoration: none;
+  color: white;
+}
+section aside figure img {
+  width: 450px;
+  border-radius: 15px;
+  height: 500px;
+  margin-bottom: 0;
+}
+
+section aside figure {
+  height: 500px;
+}
+
+#segundo_articulo {
+  background-color: rgb(34, 13, 13);
+  color: white;
+  height: 350px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+#segundo_articulo h3 {
+  text-align: center;
+  padding-top: 50px;
+  font-size: 2rem;
+}
+
+h1 {
+  width: 40px;
+  height: 40px;
+  text-indent: -100000;
+  padding-left: 45px;
+
+  font-size: 1.5rem;
+}
+
+#contenedor_cartas {
+  margin-left: 0px;
+  padding: 5px;
+}
+#contenedor_cartas ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-left: 5px;
+}
+
+#contenedor_cartas li {
+  text-decoration: none;
+  border: 2px white solid;
+  border-radius: 8px;
+  list-style: none;
+  text-align: center;
+  margin-left: 10px;
+  padding: 4px;
+  margin-right: 10px;
+  width: 330px;
+  height: 150px;
+}
+
+#contenedor_cartas p {
+  font-size: 0.8rem;
+}
+
+footer {
+  background-color: lightgrey;
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+}
+
+footer li {
+  list-style: none;
+  text-align: center;
+}
+
+footer a {
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.8rem;
+  color: black;
+}
