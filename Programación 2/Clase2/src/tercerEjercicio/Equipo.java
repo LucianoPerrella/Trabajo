@@ -1,5 +1,7 @@
 package tercerEjercicio;
 
+import java.util.Random;
+
 public class Equipo {
 	
 //	En un campeonato de fútbol por cada partido ganado se obtienen 3 puntos y por cada
@@ -22,5 +24,120 @@ public class Equipo {
 //	comandos para modificar cada atributo y las consultas para devolver cada
 //	atributo.
 //	2. Elabore una clase que permita testear el modelo.
-
+	
+	private String nombre;
+	private Jugador capitan;
+	private int partidosGanados;
+	private int partidosEmpatados;
+	private int partidosPerdidos;
+	private int golesAFavor;
+	private int golesEnContra;
+	
+	//--------------Constructores--------------
+	
+	public Equipo(String nombre,Jugador capitan) {
+		
+	}
+	
+	//--------------Getter--------------
+	public String getNombreCapitan() {
+		return capitan.getNombre();
+	}
+	
+	
+	//--------------Comandos--------------
+	
+	public void incrementarPartidosGanados(boolean jugoElCapitan) {
+		if (jugoElCapitan) {
+			capitan.aumentarUnPartido();
+			partidosGanados++;
+		}else {
+			partidosGanados++;
+		}
+	}
+	
+	public void incrementarPartidosEmpatados(boolean jugoElCapitan) {
+		if(jugoElCapitan) {
+			capitan.aumentarUnPartido();
+			partidosEmpatados++;
+		}else {
+			partidosEmpatados++;}
+		}
+		
+	public void incrementarPartidosPerdidos (boolean jugoElCapitan) {
+		if(jugoElCapitan) {
+			capitan.aumentarUnPartido();
+			partidosPerdidos++;
+		}else {
+			partidosPerdidos++;
+		}
+		
+	}
+		
+	public void incrementarGolesAFavor(int total, int golesDelCapitan) {
+		if(golesDelCapitan > 0) {
+			capitan.aumentarGoles(golesDelCapitan);
+			golesAFavor += total;
+		}else {
+			golesAFavor += total;
+		}
+	}
+		
+	public void incrementarGolesEnContra(int total) {
+		golesEnContra += total;
+	}
+		
+	//--------------Consultas--------------
+	
+	public int partidos() {
+		int totalPartidos = partidosEmpatados + partidosGanados + partidosPerdidos;
+		return totalPartidos;
+	}
+		
+	
+    public int puntos() {
+    	int totalPuntos = (partidosGanados * 3) + partidosEmpatados;
+    	return totalPuntos;
+    }
+    
+    public Equipo equipoMejorPuntaje(Equipo contrincante) {
+    	if (this.puntos() > contrincante.puntos()) { //Si el primer equipo tiene mas puntos, se retorna
+    		return this;
+    	}else if (this.puntos() == contrincante.puntos()) {//En caso de que tengan la misma cantidad de puntos, se evaluan los goles a favor
+    		if(this.golesAFavor > contrincante.golesAFavor) {//Si el primer equipo tiene mas goles a favor, se retorna
+    			return this;
+    		}else if(this.golesAFavor == contrincante.golesAFavor) {
+    			if (this.golesEnContra < contrincante.golesEnContra) {
+    				return this;
+    			}else if(this.golesEnContra == contrincante.golesEnContra) {//Si coinciden tanto en goles a favor como goles en contra, se devuelve uno al azar
+    				 Random rand = new Random();
+    			     int numeroAleatorio = rand.nextInt(2) + 1;
+    			     if (numeroAleatorio == 1) {
+    			    	 return this;
+    			     } else {
+    			    	 return contrincante;
+    			     }
+    			}else {
+    				return contrincante;
+    			}
+    		}else {
+    			return contrincante;
+    		}
+    	
+    	}else {
+    		return contrincante;
+    	}
+    }
+	
+    public Jugador jugadorConMasGoles(Equipo contrincante) {
+    	if (capitan.jugadorConMasGoles(contrincante.capitan)) {
+    		return this.capitan;
+    	}else {
+    		return contrincante.capitan;
+    	}
+    	
+    }
+	
+	
 }
+

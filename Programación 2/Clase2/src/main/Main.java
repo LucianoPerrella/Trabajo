@@ -2,6 +2,7 @@ package main;
 
 import primerEjercicio.CajaDeAhorro;
 import segundoEjercicio.Flor;
+import tercerEjercicio.*;
 
 public class Main {
 
@@ -41,6 +42,44 @@ public class Main {
 
 		
 //		--------------Ejercicio 3--------------
+		
+//		Creación
+		Jugador messi = new Jugador("Messi");
+		Jugador ronaldo = new Jugador("Ronaldo");
+		Jugador modric = new Jugador("Modric");
+		
+		Equipo chacarita = new Equipo("chacarita",messi);
+		Equipo boca = new Equipo("Boca", ronaldo);
+		Equipo racing = new Equipo("Racing", modric);
+		
+//		Partidos
+		chacarita.incrementarPartidosGanados(false);
+//		chacarita.incrementarPartidosGanados(true);
+		chacarita.incrementarGolesAFavor(3,2);
+		chacarita.incrementarPartidosEmpatados(true);
+		chacarita.incrementarGolesAFavor(1, 1);
+		chacarita.incrementarPartidosPerdidos(true);
+		chacarita.incrementarGolesEnContra(7);
+		
+		boca.incrementarPartidosEmpatados(true);
+		boca.incrementarGolesAFavor(5, 3);
+		boca.incrementarPartidosPerdidos(true);
+		boca.incrementarGolesEnContra(2);
+		boca.incrementarPartidosGanados(true);
+		boca.incrementarGolesAFavor(1, 1);
+		
+		racing.incrementarPartidosPerdidos(true);
+		racing.incrementarGolesEnContra(2);
+		racing.incrementarGolesAFavor(1, 1);
+		racing.incrementarPartidosEmpatados(false);
+		racing.incrementarGolesAFavor(1, 0);
+		
+		Jugador goleador = chacarita.jugadorConMasGoles(boca);
+		System.out.println("El jugador con mas goles es: " + goleador.getNombre());
+		
+		
+		
+		
 	}
 
 }

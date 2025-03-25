@@ -22,6 +22,50 @@ public class Jugador {
 //	comandos para modificar cada atributo y las consultas para devolver cada
 //	atributo.
 //	2. Elabore una clase que permita testear el modelo.
+	
+	private String nombre;
+	private int nroCamiseta;
+	private int posicion;
+	private int golesConvertidos;
+	private int partidosJugados;
+	
+	//--------------Constructores--------------
+	
+	public Jugador(String nombre) {
+		this.nombre = nombre;
+		
+	}
+	
+	//--------------Getter--------------
+    public String getNombre() {
+    	return nombre;
+    }
+	
+	
+	//--------------Comandos--------------
+	
+	public void aumentarGoles(int goles) {
+		golesConvertidos += goles;
+	}
+	
+	public void aumentarUnPartido() {
+		partidosJugados++;
+	}
+	
+	//--------------Consultas--------------
+	
+	public int promedioGolesPartido() {
+		int promedio = golesConvertidos / partidosJugados;
+		return promedio;
+	}
+	
+	public boolean jugadorConMasGoles(Jugador jugador) {
+		if (this.golesConvertidos > jugador.golesConvertidos) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 
 }
