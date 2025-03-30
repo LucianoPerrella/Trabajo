@@ -23,49 +23,109 @@ public class Jugador {
 //	atributo.
 //	2. Elabore una clase que permita testear el modelo.
 	
+	//----------Atributos----------
+	
 	private String nombre;
-	private int nroCamiseta;
+	private int numeroCamiseta;
 	private int posicion;
 	private int golesConvertidos;
 	private int partidosJugados;
 	
-	//--------------Constructores--------------
 	
-	public Jugador(String nombre) {
+	//----------Constructor----------
+	
+	public Jugador (String nombre) {
 		this.nombre = nombre;
-		
 	}
 	
-	//--------------Getter--------------
-    public String getNombre() {
-    	return nombre;
-    }
+	//----------Getters----------
 	
+	public String getNombre () {
+		return nombre;
+	}
 	
-	//--------------Comandos--------------
+	public int getNumeroCamiseta() {
+		return numeroCamiseta;
+	}
+	
+	public int getPosicion() {
+		return posicion;
+	}
+	
+	public int getGolesConvertidos() {
+		return golesConvertidos;
+	}
+	
+	public int getPartidosJugados() {
+		return partidosJugados;
+	}
+	
+	//----------Setters----------
+	
+	public void setNombre (String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public void setNumeroCamiseta(int numeroCamiseta) {
+		this.numeroCamiseta = numeroCamiseta;
+	}
+	
+	public void setPosicion(int posicion) {
+		this.posicion = posicion;
+	}
+	
+	//----------Comandos----------
 	
 	public void aumentarGoles(int goles) {
-		golesConvertidos += goles;
+		this.golesConvertidos += goles;
 	}
 	
 	public void aumentarUnPartido() {
-		partidosJugados++;
+		this.partidosJugados ++;
 	}
 	
-	//--------------Consultas--------------
-	
-	public int promedioGolesPartido() {
-		int promedio = golesConvertidos / partidosJugados;
+	//----------Consultas----------
+
+	public int promedioGolesPorPartido() {
+		int promedio = (golesConvertidos/partidosJugados);
 		return promedio;
 	}
 	
-	public boolean jugadorConMasGoles(Jugador jugador) {
-		if (this.golesConvertidos > jugador.golesConvertidos) {
+	public boolean masGoles(Jugador otrojugador) {
+		if (this.getGolesConvertidos() > otrojugador.getGolesConvertidos()) {
 			return true;
 		}else {
 			return false;
 		}
 	}
+	
+	public Jugador jugadorConMasGoles(Jugador otroJugador) {
+		Jugador jugadorConMasGoles;
+		if (this.masGoles(otroJugador) == true) {
+			jugadorConMasGoles = this;
+		} else {
+			jugadorConMasGoles = otroJugador;
+		}
+		
+		return jugadorConMasGoles;
+	}
+	
+	public String aCadena() {
+		String detallesJugador = ("Nombre: " + this.getNombre() + ". Jugó " + this.getPartidosJugados()
+		+ " partidos en total, tiene " + this.getGolesConvertidos() +
+		" goles convertidos en total y su promedio de goles por partido es de " + this.promedioGolesPorPartido());
+		
+		return detallesJugador;
+				
+				
+	}
+
+
+
+
+
+
+
 
 
 }

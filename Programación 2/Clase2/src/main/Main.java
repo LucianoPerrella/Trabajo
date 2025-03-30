@@ -1,5 +1,6 @@
 package main;
 
+import cuartoEjercicio.TempMinEstacion;
 import primerEjercicio.CajaDeAhorro;
 import segundoEjercicio.Flor;
 import tercerEjercicio.*;
@@ -43,42 +44,61 @@ public class Main {
 		
 //		--------------Ejercicio 3--------------
 		
-//		Creación
-		Jugador messi = new Jugador("Messi");
-		Jugador ronaldo = new Jugador("Ronaldo");
-		Jugador modric = new Jugador("Modric");
+////		Creación
+//		Jugador messi = new Jugador("Messi");
+//		Jugador ronaldo = new Jugador("Ronaldo");
+//		
+//		
+//		Equipo chacarita = new Equipo("chacarita",messi);
+//		Equipo boca = new Equipo("Boca", ronaldo);
+//		
+//		
+////		Partidos
+//		chacarita.incrementarPartidosGanados(false);
+////		chacarita.incrementarPartidosGanados(true);
+//		
+//		chacarita.incrementarPartidosEmpatados(true);
+//	
+//		chacarita.incrementarPartidosPerdidos(true);
+//		
+//		
+//		boca.incrementarPartidosEmpatados(true);
+//		
+//		boca.incrementarPartidosPerdidos(true);
+//		
+//		boca.incrementarPartidosGanados(true);
+//		
+//		
+//		
+//		
+//		
+//		//Resultados
+//		
+//		Jugador capitanConMasGoles = chacarita.capitanConMasGoles(ronaldo);
+//		Equipo equipoMejorPunta = chacarita.mejorPuntaje(boca);
+//		
+//		System.out.println(capitanConMasGoles.aCadena());
+//		System.out.println(equipoMejorPunta.getNombre());
+//		
 		
-		Equipo chacarita = new Equipo("chacarita",messi);
-		Equipo boca = new Equipo("Boca", ronaldo);
-		Equipo racing = new Equipo("Racing", modric);
+//		--------------Ejercicio 4--------------
 		
-//		Partidos
-		chacarita.incrementarPartidosGanados(false);
-//		chacarita.incrementarPartidosGanados(true);
-		chacarita.incrementarGolesAFavor(3,2);
-		chacarita.incrementarPartidosEmpatados(true);
-		chacarita.incrementarGolesAFavor(1, 1);
-		chacarita.incrementarPartidosPerdidos(true);
-		chacarita.incrementarGolesEnContra(7);
+		TempMinEstacion temperaturas = new TempMinEstacion(5);
+		temperaturas.establecerTempMin(0, 17);
+		temperaturas.establecerTempMin(1, -25);
+		temperaturas.establecerTempMin(2, 32);
+		temperaturas.establecerTempMin(3, 2);
+		temperaturas.establecerTempMin(4, -2);
 		
-		boca.incrementarPartidosEmpatados(true);
-		boca.incrementarGolesAFavor(5, 3);
-		boca.incrementarPartidosPerdidos(true);
-		boca.incrementarGolesEnContra(2);
-		boca.incrementarPartidosGanados(true);
-		boca.incrementarGolesAFavor(1, 1);
+		System.out.println("La temperaturas mayor es: " + temperaturas.mayorTempMin());
+		System.out.println("El promedio de temperatura es: " + temperaturas.promedioTempMin());
+		System.out.println("¿Hubo heladas?: " + temperaturas.huboHeladas());
+		if (temperaturas.huboHeladas()) {
+			System.out.println("¿Cuantas heladas hubo?: " + temperaturas.cantHeladas());
+		}
 		
-		racing.incrementarPartidosPerdidos(true);
-		racing.incrementarGolesEnContra(2);
-		racing.incrementarGolesAFavor(1, 1);
-		racing.incrementarPartidosEmpatados(false);
-		racing.incrementarGolesAFavor(1, 0);
-		
-		Jugador goleador = chacarita.jugadorConMasGoles(boca);
-		System.out.println("El jugador con mas goles es: " + goleador.getNombre());
-		
-		
-		
+		System.out.println("La temperatura mayor a la dada (31) es: " + temperaturas.primeroMayor(31));
+		System.out.println("¿La lista está ordenada de manera creciente?: " + temperaturas.ordenadoCreciente());
 		
 	}
 

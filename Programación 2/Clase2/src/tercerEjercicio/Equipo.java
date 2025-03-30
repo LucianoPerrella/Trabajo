@@ -1,6 +1,7 @@
 package tercerEjercicio;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Equipo {
 	
@@ -25,6 +26,8 @@ public class Equipo {
 //	atributo.
 //	2. Elabore una clase que permita testear el modelo.
 	
+	//----------Atributos----------
+	
 	private String nombre;
 	private Jugador capitan;
 	private int partidosGanados;
@@ -33,111 +36,192 @@ public class Equipo {
 	private int golesAFavor;
 	private int golesEnContra;
 	
-	//--------------Constructores--------------
+	//----------Constructor----------
 	
-	public Equipo(String nombre,Jugador capitan) {
-		
+	public Equipo (String nombre, Jugador capitan) {
+		this.nombre = nombre;
+		this.capitan = capitan;
 	}
 	
-	//--------------Getter--------------
-	public String getNombreCapitan() {
-		return capitan.getNombre();
+	//----------Getters----------
+	
+	public String getNombre() {
+		return nombre;
 	}
 	
+	public Jugador getCapitan() {
+		return capitan;
+	}
 	
-	//--------------Comandos--------------
+	public int getPartidosGanados() {
+		return partidosGanados;
+	}
+	
+	public int getPartidosEmpatados () {
+		return partidosEmpatados;
+	}
+	
+	public int getPartidosPerdidos() {
+		return partidosPerdidos;
+	}
+	
+	public int getGolesAFavor() {
+		return golesAFavor;
+	}
+	
+	public int getGolesEnContra() {
+		return golesEnContra;
+	}
+	
+	public int getPuntajeTotal() {
+		int puntajeTotal = (this.getPartidosGanados() * 3 + this.getPartidosEmpatados());
+		return puntajeTotal;
+	}
+	
+	//----------Comandos----------
 	
 	public void incrementarPartidosGanados(boolean jugoElCapitan) {
+		Scanner input = new Scanner(System.in);
+		int golesAFavor;
+		int golesEnContra;
+		int golesDelCapitan;
+		System.out.println("¿Cuantos goles a favor hizo el equipo?: ");
+		golesAFavor = input.nextInt();
+		System.out.println("¿Cuantos goles en contra le hicieron el equipo?: ");
+		golesEnContra = input.nextInt();
+		this.aumentarGolesEnContra(golesEnContra);
 		if (jugoElCapitan) {
-			capitan.aumentarUnPartido();
-			partidosGanados++;
-		}else {
-			partidosGanados++;
+			
+			System.out.println("¿Cuantos goles a favor hizo el capitan?: ");
+			golesDelCapitan = input.nextInt();
+			this.aumentarGolesAFavor(golesAFavor, golesDelCapitan);
+			
+			this.capitan.aumentarUnPartido();
+			
+		} else {
+			this.aumentarGolesAFavor(golesAFavor, 0);}
+		
+		this.partidosGanados ++;
 		}
+			
+		
+		
+	public void incrementarPartidosEmpatados(boolean jugoElCapitan) {
+		Scanner input = new Scanner(System.in);
+		int golesAFavor;
+		int golesEnContra;
+		int golesDelCapitan;
+		System.out.println("¿Cuantos goles a favor hizo el equipo?: ");
+		golesAFavor = input.nextInt();
+		System.out.println("¿Cuantos goles en contra le hicieron el equipo?: ");
+		golesEnContra = input.nextInt();
+		this.aumentarGolesEnContra(golesEnContra);
+		if (jugoElCapitan) {
+			
+			System.out.println("¿Cuantos goles a favor hizo el capitan?: ");
+			golesDelCapitan = input.nextInt();
+			this.aumentarGolesAFavor(golesAFavor, golesDelCapitan);
+			
+			this.capitan.aumentarUnPartido();
+			
+		} else {
+			this.aumentarGolesAFavor(golesAFavor, 0);}
+		
+		this.partidosEmpatados ++;}
+		
+		
+	
+	public void incrementarPartidosPerdidos(boolean jugoElCapitan) {
+		Scanner input = new Scanner(System.in);
+		int golesAFavor;
+		int golesEnContra;
+		int golesDelCapitan;
+		System.out.println("¿Cuantos goles a favor hizo el equipo?: ");
+		golesAFavor = input.nextInt();
+		System.out.println("¿Cuantos goles en contra le hicieron el equipo?: ");
+		golesEnContra = input.nextInt();
+		this.aumentarGolesEnContra(golesEnContra);
+		if (jugoElCapitan) {
+			
+			System.out.println("¿Cuantos goles a favor hizo el capitan?: ");
+			golesDelCapitan = input.nextInt();
+			this.aumentarGolesAFavor(golesAFavor, golesDelCapitan);
+			
+			this.capitan.aumentarUnPartido();
+			
+		} else {
+			this.aumentarGolesAFavor(golesAFavor, 0);}
+		
+		this.partidosPerdidos ++;
+				
+	}
+		
+	public void aumentarGolesAFavor(int total, int golesDelCapitan) {
+		golesAFavor += total;
+		capitan.aumentarGoles(golesDelCapitan);
 	}
 	
-	public void incrementarPartidosEmpatados(boolean jugoElCapitan) {
-		if(jugoElCapitan) {
-			capitan.aumentarUnPartido();
-			partidosEmpatados++;
-		}else {
-			partidosEmpatados++;}
-		}
-		
-	public void incrementarPartidosPerdidos (boolean jugoElCapitan) {
-		if(jugoElCapitan) {
-			capitan.aumentarUnPartido();
-			partidosPerdidos++;
-		}else {
-			partidosPerdidos++;
-		}
-		
-	}
-		
-	public void incrementarGolesAFavor(int total, int golesDelCapitan) {
-		if(golesDelCapitan > 0) {
-			capitan.aumentarGoles(golesDelCapitan);
-			golesAFavor += total;
-		}else {
-			golesAFavor += total;
-		}
-	}
-		
-	public void incrementarGolesEnContra(int total) {
+	public void aumentarGolesEnContra(int total) {
 		golesEnContra += total;
 	}
-		
-	//--------------Consultas--------------
+
+	
+	
+	//----------Consultas----------
 	
 	public int partidos() {
-		int totalPartidos = partidosEmpatados + partidosGanados + partidosPerdidos;
+		int totalPartidos = this.getPartidosEmpatados() + this.getPartidosGanados() + this.partidosPerdidos;
 		return totalPartidos;
 	}
+	
+	public Jugador capitanConMasGoles(Jugador otroJugador) {
+		Jugador goleador =this.capitan.jugadorConMasGoles(otroJugador);
+		return goleador;
+	}
+	
+	public Equipo mejorPuntaje(Equipo competidor) {
+		Equipo equipoMejorPuntaje;
+		if (this.getPuntajeTotal() > competidor.getPuntajeTotal()) {
+			equipoMejorPuntaje = this;
+			
+		} else if(this.getPuntajeTotal() < competidor.getPuntajeTotal()) {
+			equipoMejorPuntaje = competidor;
+		} else {
+			if(this.getGolesAFavor() > competidor.getGolesAFavor()){
+				equipoMejorPuntaje = this;
+			} else if (this.getGolesAFavor() < competidor.getGolesAFavor()) {
+				equipoMejorPuntaje = competidor;
+			} else {
+				Random rand = new Random();
+		        int numeroAleatorio = rand.nextInt(2) + 1;
+		        if (numeroAleatorio == 1) {
+		        	equipoMejorPuntaje = this;
+		        } else{
+		        	equipoMejorPuntaje = competidor;
+		        }
+			}
+					
+		}
 		
+		return equipoMejorPuntaje;
+	}
 	
-    public int puntos() {
-    	int totalPuntos = (partidosGanados * 3) + partidosEmpatados;
-    	return totalPuntos;
-    }
-    
-    public Equipo equipoMejorPuntaje(Equipo contrincante) {
-    	if (this.puntos() > contrincante.puntos()) { //Si el primer equipo tiene mas puntos, se retorna
-    		return this;
-    	}else if (this.puntos() == contrincante.puntos()) {//En caso de que tengan la misma cantidad de puntos, se evaluan los goles a favor
-    		if(this.golesAFavor > contrincante.golesAFavor) {//Si el primer equipo tiene mas goles a favor, se retorna
-    			return this;
-    		}else if(this.golesAFavor == contrincante.golesAFavor) {
-    			if (this.golesEnContra < contrincante.golesEnContra) {
-    				return this;
-    			}else if(this.golesEnContra == contrincante.golesEnContra) {//Si coinciden tanto en goles a favor como goles en contra, se devuelve uno al azar
-    				 Random rand = new Random();
-    			     int numeroAleatorio = rand.nextInt(2) + 1;
-    			     if (numeroAleatorio == 1) {
-    			    	 return this;
-    			     } else {
-    			    	 return contrincante;
-    			     }
-    			}else {
-    				return contrincante;
-    			}
-    		}else {
-    			return contrincante;
-    		}
-    	
-    	}else {
-    		return contrincante;
-    	}
-    }
 	
-    public Jugador jugadorConMasGoles(Equipo contrincante) {
-    	if (capitan.jugadorConMasGoles(contrincante.capitan)) {
-    		return this.capitan;
-    	}else {
-    		return contrincante.capitan;
-    	}
-    	
-    }
+	
+	
+	
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
 
