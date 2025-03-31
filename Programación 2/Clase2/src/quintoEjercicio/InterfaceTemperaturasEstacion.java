@@ -13,9 +13,7 @@ public interface InterfaceTemperaturasEstacion {
 	public String intercambiar(int pos1, int pos2); //Intercambiar las componentes de las posiciones pos1 y pos2, verificando que ambas existan. Si pudo hacer el ntercambio devuelve una cadenavacía, sino un mensaje de error.
 	public void invertirMe(); // invierte los elementos de la tabla receptora del mensaje
 	public void ordenarBubble(); //Ordena las temperaturas de mayor a menor. Investigar métodos de ordenamiento Bubble Sort, Quick Sort, Merge Sort y Búsqueda Binaria (implementar este último)
-	public void ordenarQuick();
-	public void ordenarMerge();
-	public void ordenarBinaria();
+	public int busquedaBinaria(float objetivo);
 
 
 

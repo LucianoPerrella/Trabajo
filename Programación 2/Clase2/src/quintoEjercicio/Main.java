@@ -13,12 +13,12 @@ public class Main {
 //		estacion2.establecerTempMin(4, -6);
 //		
 		// TODO Auto-generated method stub
-		estacion1.establecerTempMin(0, 1);
-		estacion1.establecerTempMin(1, 102);
-		estacion1.establecerTempMin(2, 37);
-		estacion1.establecerTempMin(3, 4);
-		estacion1.establecerTempMin(4, -6);
-		estacion1.establecerTempMin(5, 32);
+		estacion1.establecerTempMin(0, 1f);
+		estacion1.establecerTempMin(1, 102f);
+		estacion1.establecerTempMin(2, 37.0f);
+		estacion1.establecerTempMin(3, 4f);
+		estacion1.establecerTempMin(4, -6f);
+		estacion1.establecerTempMin(5, 32f);
 		
 //		TemperaturasEstacion estacion3 = estacion1.invertir();
 //		System.out.println(estacion1.menorTemperatura());
@@ -43,12 +43,18 @@ public class Main {
 //			System.out.println(estacion1.getListaTemperaturas()[i]);
 //		}
 		
-		estacion1.invertirMe();
+//		
+		estacion1.ordenarBubble();
 		for (int i = 0; i < estacion1.getListaTemperaturas().length; i++) {
 			System.out.println(estacion1.getListaTemperaturas()[i]);
 		}
+		System.out.println("-----");
+		int posicion = estacion1.busquedaBinaria(-1f);
+		System.out.println(posicion);
 		
 
 	}
 
-}
+	}
+
+

@@ -7,6 +7,9 @@ public class TemperaturasEstacion extends TempMinEstacion implements InterfaceTe
 		super(cantidadTemperaturas);
 		// TODO Auto-generated constructor stub
 	}
+	
+	//setter
+	
 
 	@Override
 	public float menorTemperatura() {
@@ -125,29 +128,44 @@ public class TemperaturasEstacion extends TempMinEstacion implements InterfaceTe
 
 	@Override
 	public void ordenarBubble() {
-		// TODO Auto-generated method stub
+		float[] lista = this.getListaTemperaturas();
+		int ultimoIndice = this.getListaTemperaturas().length - 1;
 		
-	}
-
-	@Override
-	public void ordenarQuick() {
-		// TODO Auto-generated method stub
+		for(int i = 0;i < ultimoIndice ; i++) {
+			for(int j = 0; j < ultimoIndice - i ; j++) {
+				if(lista[j] > lista[j+1]) {
+					float aux = lista[j];
+					lista[j] = lista[j+1];
+					lista[j+1] = aux;
+					
+				}
+			}
+		}
 		
-	}
-
-	@Override
-	public void ordenarMerge() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void ordenarBinaria() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	
+	@Override
+	public int busquedaBinaria(float objetivo) {
+		int izquierda = 0;
+		
+		int derecha = this.getListaTemperaturas().length - 1;
+		
+		while (izquierda <= derecha) {
+			int medio =  izquierda + (derecha - izquierda)/2;
+			if(this.getListaTemperaturas()[medio] == objetivo) {
+				return medio;
+			}else if(this.getListaTemperaturas()[medio] < objetivo) {
+				izquierda = medio + 1;
+			} else {
+				derecha = medio - 1;
+			}
+		}
+		
+		return -1;
+	}
+
 }
 
 
