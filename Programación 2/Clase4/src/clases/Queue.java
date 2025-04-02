@@ -2,22 +2,37 @@ package clases;
 
 import interfaces.InterfaceQueue;
 
-public class Queue<E> implements InterfaceQueue<E> {
+public class Queue<Elemento> implements InterfaceQueue<Elemento> {
+	private int f;
+	private int r;
+	private int size;
+	private Elemento[] q;
+	
+	
+	//-----------Constructor-----------
+	
+	public Queue(int tamanio) {
+		f=0;
+		r=0;
+		size=0;
+		q = (Elemento[])new Object[tamanio];
+		
+	}
 
 	@Override
-	public void enqueue(E elemento) {
+	public void enqueue(Elemento elemento) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public E dequeue() {
+	public Elemento dequeue() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public E front() {
+	public Elemento front() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -34,4 +49,5 @@ public class Queue<E> implements InterfaceQueue<E> {
 		return 0;
 	}
 
+	
 }
