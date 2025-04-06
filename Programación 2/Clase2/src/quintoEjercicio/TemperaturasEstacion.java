@@ -1,5 +1,6 @@
 package quintoEjercicio;
 
+import Interfaces.InterfaceTemperaturasEstacion;
 
 public class TemperaturasEstacion extends TempMinEstacion implements InterfaceTemperaturasEstacion {
 
@@ -166,7 +167,13 @@ public class TemperaturasEstacion extends TempMinEstacion implements InterfaceTe
 		return -1;
 	}
 
+	
+	
+
+	
+
 }
+
 
 
 

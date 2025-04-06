@@ -1,6 +1,7 @@
-package quintoEjercicio;
+package Interfaces;
 
 import cuartoEjercicio.TempMinEstacion;
+import quintoEjercicio.TemperaturasEstacion;
 
 public interface InterfaceTemperaturasEstacion {
 	
@@ -14,6 +15,7 @@ public interface InterfaceTemperaturasEstacion {
 	public void invertirMe(); // invierte los elementos de la tabla receptora del mensaje
 	public void ordenarBubble(); //Ordena las temperaturas de mayor a menor. Investigar métodos de ordenamiento Bubble Sort, Quick Sort, Merge Sort y Búsqueda Binaria (implementar este último)
 	public int busquedaBinaria(float objetivo);
+	
 
 
 
