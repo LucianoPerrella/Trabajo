@@ -104,6 +104,30 @@ public class LinkedList <Generico> implements InterfaceList<Generico> {
 	
 		
 	}
+	
+	public void cambiarValorExistente(int index, Generico elemento) {
+		 if (index < 0 || index > this.getSize()) {
+		        throw new MyException("Se ingresó un índice inválido en la lista.");
+		    }
+		Node<Generico> nuevoNodo = new Node<Generico>(elemento);
+		
+
+		if (index == 0) {
+	        nuevoNodo.setNext(head);
+	        head = nuevoNodo;
+	    } else {
+	        Node<Generico> anteriorNodo = head;
+	        for (int i = 0; i < index - 1; i++) {
+	            anteriorNodo = anteriorNodo.getNext();
+	        }
+
+	        Node<Generico> siguienteNodo = anteriorNodo.getNext();
+	        anteriorNodo.setNext(nuevoNodo);
+	        nuevoNodo.setNext(siguienteNodo);
+	    }
+		
+	   
+	}
 
 	@Override
 	public void First() {

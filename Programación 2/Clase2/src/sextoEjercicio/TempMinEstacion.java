@@ -4,17 +4,18 @@ import List.LinkedList;
 
 public class TempMinEstacion {
 	
-	LinkedList <Float> lista;
+	 private LinkedList <Float> lista;
 	
 	//----------Constructor----------
 	
 	public TempMinEstacion(int cantidadTemperaturas) {
-		for(int i = 0;i < cantidadTemperaturas;i++) {
+		lista = new LinkedList<Float>();
+		for(int i = 0;i < cantidadTemperaturas ;i++) {
 			if(i==0) {
-			this.lista.addFirst(0f);
+				lista.addFirst(0f);
 		}else {
 			
-			this.lista.addLast(0f);
+			lista.addLast(0f);
 		}
 	}
 		
@@ -23,17 +24,83 @@ public class TempMinEstacion {
 	
 
 }
-	//----------Consultas----------
+	//----------Comando----------
 	public void establecerTempMin(int index, float elem) {
 		
-		 	lista.First();
-		 	float aux = lista.getCurrent().se;
-		 	for(int i = 0; i < index; i++) {
-		 		lista.advance();
-		 		aux = lista.getCurrent();
-		 	}
+		 	lista.cambiarValorExistente(index, elem);
 		
 		
 	}
 	
+	//----------Consulta----------
+	public Float mayorTempMin() {
+		lista.First();
+		Float mayorTemp = lista.getCurrent();
+		for(int i = 0; i < lista.getSize(); i++) {
+			Float actual = lista.getCurrent();
+			if(actual > mayorTemp) {
+				mayorTemp = actual;
+			}
+			lista.advance();
+		}
+		return mayorTemp;
+	}
+	
+	public Float promedioTempMin() {
+		Float promedio = 0f;
+		float suma = 0f;
+		lista.First();
+		for(int i = 0; i < lista.getSize(); i++) {
+			suma = suma + lista.getCurrent();
+			lista.advance();
+			
+			
+		}
+		promedio = suma / lista.getSize();
+		
+		
+		return promedio;
+	}
+	
+	public int cantHeladas() {
+		int cantHeladas = 0;
+		lista.First();
+		for (int i = 0; i < lista.getSize(); i++) {
+			if(lista.getCurrent() < 0) {
+				cantHeladas++;
+			}
+			lista.advance();
+		}
+		
+		return cantHeladas;
+	}
+	
+	public boolean huboHeladas() {
+		boolean hubo = false;
+		lista.First();
+		
+		while(!hubo && !lista.atEnd()) {
+			if(lista.getCurrent() < 0) {
+				hubo = true;
+			}
+			lista.advance();
+			
+			
+			
+		}
+		return hubo;
+	}
+	
+	public Float primeroMayor(Float comparacion) {
+		Float mayor = comparacion;
+		lista.First();
+		while (lista.getCurrent() < mayor) {
+			if (lista.getCurrent() > mayor) {
+				mayor = lista.getCurrent();
+			}
+			lista.advance();
+		}
+		
+		return mayor;
+	}
 }
