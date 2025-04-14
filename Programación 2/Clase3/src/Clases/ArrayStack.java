@@ -74,5 +74,40 @@ public class ArrayStack<T> implements Stack<T> {
 	public int size() {
 		return size;
 	}
+	
+	
+	
+	public static <T>  ArrayStack<T> invertirStack(ArrayStack<T> stackAInvertir){
+		
+		
+		ArrayStack<T> invertido = new ArrayStack<T>(stackAInvertir.size);
+		
+	
+		
+		while(!stackAInvertir.isEmpty()) {
+			T ultimo = stackAInvertir.pop();
+			invertido.push(ultimo);
+		}
+		
+		return invertido;
+		
+	}
+	
+	public static Persona[] invertir(Persona[] arreglo) {
+		ArrayStack<Persona> stackPersonas = new ArrayStack<Persona>(arreglo.length);
+		
+		for(int i = 0; i < arreglo.length; i++) {
+			stackPersonas.push(arreglo[i]);
+		}
+		
+		int contador = 0;
+		while(!stackPersonas.isEmpty()) {
+			arreglo[contador] = stackPersonas.pop();
+			contador++;
+		}
+		
+		
+		return arreglo;
+	}
 
 }
