@@ -4,7 +4,7 @@ import List.LinkedList;
 
 public class TempMinEstacion {
 	
-	 private LinkedList <Float> lista;
+	 protected LinkedList <Float> lista;
 	
 	//----------Constructor----------
 	
@@ -33,6 +33,16 @@ public class TempMinEstacion {
 	}
 	
 	//----------Consulta----------
+	
+	
+	public void recorrerLista() {
+		lista.First();
+		for (int i = 0; i < lista.getSize(); i++) {
+			System.out.println(lista.getCurrent());
+			lista.advance();
+		}
+	}
+	
 	public Float mayorTempMin() {
 		lista.First();
 		Float mayorTemp = lista.getCurrent();
@@ -94,13 +104,32 @@ public class TempMinEstacion {
 	public Float primeroMayor(Float comparacion) {
 		Float mayor = comparacion;
 		lista.First();
-		while (lista.getCurrent() < mayor) {
-			if (lista.getCurrent() > mayor) {
+		while(!lista.atEnd() && mayor == comparacion) {
+			if (lista.getCurrent() > mayor ) {
 				mayor = lista.getCurrent();
+			} else {
+				lista.advance();
 			}
-			lista.advance();
-		}
+		}return mayor;
 		
-		return mayor;
 	}
+	
+	public boolean ordenadoCreciente() {
+		boolean ordenado = true;
+		lista.First();
+		Float anterior = lista.getCurrent();
+		lista.advance();
+		while(!lista.atEnd() && ordenado) {
+			if(anterior > lista.getCurrent()) {
+				ordenado = false;
+			} else {
+				anterior = lista.getCurrent();
+				lista.advance();
+			}
+			
+		}
+		return ordenado;
+	}
+	
+	
 }

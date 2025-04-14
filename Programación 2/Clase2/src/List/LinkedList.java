@@ -109,29 +109,27 @@ public class LinkedList <Generico> implements InterfaceList<Generico> {
 		 if (index < 0 || index > this.getSize()) {
 		        throw new MyException("Se ingresó un índice inválido en la lista.");
 		    }
-		Node<Generico> nuevoNodo = new Node<Generico>(elemento);
+		
 		
 
-		if (index == 0) {
-	        nuevoNodo.setNext(head);
-	        head = nuevoNodo;
-	    } else {
-	        Node<Generico> anteriorNodo = head;
-	        for (int i = 0; i < index - 1; i++) {
-	            anteriorNodo = anteriorNodo.getNext();
-	        }
-
-	        Node<Generico> siguienteNodo = anteriorNodo.getNext();
-	        anteriorNodo.setNext(nuevoNodo);
-	        nuevoNodo.setNext(siguienteNodo);
+		Node<Generico> actual = head;
+	    for (int i = 0; i < index; i++) {
+	        actual = actual.getNext();
 	    }
+
+	    actual.setElement(elemento); 
+	}
 		
 	   
-	}
+	
 
 	@Override
-	public void First() {
+	public void First() throws MyException{
+		if(head == null) {
+			throw new MyException("La lista está vacia");
+		}else {
 		current = head;
+		}
 		
 	}
 
@@ -153,7 +151,7 @@ public class LinkedList <Generico> implements InterfaceList<Generico> {
 
 	@Override
 	public boolean atEnd() {
-		return current.getNext()==null;
+		return current==null;
 	}
 
 	@Override
