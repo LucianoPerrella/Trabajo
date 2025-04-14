@@ -109,5 +109,7 @@ public class ArrayStack<T> implements Stack<T> {
 		
 		return arreglo;
 	}
+	
+
 
 }
