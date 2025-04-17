@@ -70,13 +70,25 @@ public class Impresora {
 	
 	
 //	---------Métodos---------
-	private boolean puedeImprimir(Documento docu) {
-		return docu.getCantidadPaginas() <= this.cantidadHojas
-				&& docu.getConsumoAmarillo() <= this.getPorcentajeAmarillo()
+	protected boolean puedeImprimir(Documento docu) {
+		return meAlcanzanLasHojas(docu)
+				&& meAlcanzanLasTinta(docu);
+	
+	}
+	
+	protected boolean meAlcanzanLasHojas(Documento docu) {
+		return this.getCantidadHojas() >= docu.getCantidadPaginas();
+	}
+	
+	
+	
+	
+	protected boolean meAlcanzanLasTinta(Documento docu) {
+		return docu.getConsumoAmarillo() <= this.getPorcentajeAmarillo()
 				&& docu.getConsumoCian() <= this.getPorcentajeCian()
 				&& docu.getConsumoMagenta() <= this.getPorcentajeMagenta()
 				&& docu.getConsumoNegro() <= this.getPorcentajeNegro();
-	
+		
 	}
 	
 	
@@ -84,21 +96,27 @@ public class Impresora {
 	
 
 	public Documento imprimirDocumento(Documento docu) {
-		boolean sePuede = this.puedeImprimir(docu);
-		if (sePuede) {
+		
+		if (this.puedeImprimir(docu)) {
 			this.setCantidadHojas(getCantidadHojas() - docu.getCantidadPaginas()); 
 			this.setPorcentajeAmarillo(getPorcentajeAmarillo() - docu.getConsumoAmarillo()); 
 			this.setPorcentajeCian(getPorcentajeCian() - docu.getConsumoCian());
 			this.setPorcentajeMagenta(getPorcentajeMagenta() - docu.getConsumoMagenta());
 			this.setPorcentajeNegro(getPorcentajeNegro() - docu.getConsumoNegro()); 
-			docu.setFueImpreso(true);
-			System.out.println("Imprimiendo amigo");
+			docu.setFueImpreso(true);}
 			
-		}else {
-			System.out.println("No hay recursos querido, recargame");
-		}
+		
 		return docu;
 	}
 	
-
+	public void recargarTintas() {
+		this.setPorcentajeAmarillo(100);
+		this.setPorcentajeCian(100);
+		this.setPorcentajeMagenta(100);
+		this.setPorcentajeNegro(100);
+	}
+	
+	public void recargarHojas(int cuantas) {
+		this.setCantidadHojas(cuantas);
+	}
 }
