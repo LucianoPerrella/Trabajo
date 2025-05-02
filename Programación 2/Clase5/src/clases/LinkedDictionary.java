@@ -111,40 +111,56 @@ public class LinkedDictionary<K,V> implements InterfaceDictionary<K,V> {
 		return copiaValores;
 	}
 
+	
 	@Override
 	public V remove(K k, V v) {
-		if (size == 0) return null;
+	    if (size == 0) {
+	        return null;
+	    }
 
-		DNode<Entry<K, LinkedList<V>>> actual = head;
-		while (actual != null && !actual.getElement().getKey().equals(k)) {
-			actual = actual.getNext();
-		}
-		if (actual != null) {
-			LinkedList<V> listaValores = actual.getElement().getValue();
-			try {
-				listaValores.remove(v);
-				if (listaValores.getSize() == 0) {
-					if (actual == head) {
-						head = head.getNext();
-						if (head != null) head.setPrevious(null);
-						else tail = null;
-					} else {
-						actual.getPrevious().setNext(actual.getNext());
-						if (actual.getNext() != null) {
-							actual.getNext().setPrevious(actual.getPrevious());
-						} else {
-							tail = actual.getPrevious();
-						}
-					}
-					size--;
-				}
-				return v;
-			} catch (MyException e) {
-				return null;
-			}
-		}
-		return null;
+	    DNode<Entry<K, LinkedList<V>>> actual = head;
+
+	    // Buscar la clave
+	    while (actual != null && !actual.getElement().getKey().equals(k)) {
+	        actual = actual.getNext();
+	    }
+
+	    if (actual != null) {
+	        LinkedList<V> listaValores = actual.getElement().getValue();
+	        try {
+	            listaValores.remove(v);  // Puede lanzar MyException si no encuentra el valor
+
+	            if (listaValores.getSize() == 0) {
+	                // Eliminar el nodo del diccionario
+	                if (actual == head && actual == tail) {
+	                    head = null;
+	                    tail = null;
+	                } else if (actual == head) {
+	                    head = head.getNext();
+	                    if (head != null) {
+	                        head.setPrevious(null);
+	                    }
+	                } else if (actual == tail) {
+	                    tail = tail.getPrevious();
+	                    if (tail != null) {
+	                        tail.setNext(null);
+	                    }
+	                } else {
+	                    actual.getPrevious().setNext(actual.getNext());
+	                    actual.getNext().setPrevious(actual.getPrevious());
+	                }
+	                size--;
+	            }
+
+	            return v;
+	        } catch (MyException e) {
+	            return null;  // Valor no encontrado
+	        }
+	    } else {
+	        return null;  // Clave no encontrada
+	    }
 	}
+
 
 	@Override
 	public Iterable<K> keys() {

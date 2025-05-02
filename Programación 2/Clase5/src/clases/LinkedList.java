@@ -83,28 +83,32 @@ public class LinkedList <Generico> implements InterfaceList<Generico>, Iterable<
 
 	@Override
 	public void remove(Generico elemento) throws MyException {
-		if (head == null)
-			throw new MyException("La lista está vacia, no se puede eliminar ningún elemento.");
-		else if(head.getElement().equals(elemento)) {
-			this.removeFirst();
-		} else {
-			DNode<Generico> aux = head;
-			while(aux != null && aux.getNext().getElement().equals(elemento)) {
-				aux = aux.getNext();
-				
-			}
-			if(aux == null) {
-				throw new MyException("El elemento buscado no existe en la lista");
-				
-			}
-			DNode<Generico> elementoAEliminar = aux.getNext();
-			aux.setNext(elementoAEliminar.getNext());
-			elementoAEliminar.setNext(null);
-		}
-		size--;
-	
-		
+	    if (head == null) {
+	        throw new MyException("La lista está vacía, no se puede eliminar ningún elemento.");
+	    } else if (head.getElement().equals(elemento)) {
+	        this.removeFirst();
+	    } else {
+	        DNode<Generico> aux = head;
+	        // Recorremos hasta encontrar el elemento o el final de la lista
+	        while (aux.getNext() != null && !aux.getNext().getElement().equals(elemento)) {
+	            aux = aux.getNext();
+	        }
+	        // Si el siguiente es null, significa que no se encontró el elemento
+	        if (aux.getNext() == null) {
+	            throw new MyException("El elemento buscado no existe en la lista");
+	        }
+	        // Si se encontró, lo eliminamos
+	        DNode<Generico> elementoAEliminar = aux.getNext();
+	        aux.setNext(elementoAEliminar.getNext());
+	        if (aux.getNext() != null) {
+	            aux.getNext().setPrevious(aux); // Actualizamos el anterior del siguiente nodo
+	        }
+	        elementoAEliminar.setNext(null);
+	        elementoAEliminar.setPrevious(null); // Desconectamos completamente el nodo
+	    }
+	    size--;
 	}
+
 	
 	public void cambiarValorExistente(int index, Generico elemento) {
 		 if (index < 0 || index > this.getSize()) {
