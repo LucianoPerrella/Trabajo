@@ -1,5 +1,6 @@
 package interfaces;
 
+
 public interface InterfaceList<Generico> {
 	public void addFirst(Generico elemento);
 	public void addLast(Generico elemento);

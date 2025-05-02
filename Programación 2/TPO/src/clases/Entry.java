@@ -1,7 +1,7 @@
 package clases;
 
 import interfaces.InterfaceEntry;
-public class Entry<K extends Comparable <K>,V> implements InterfaceEntry<K,V> {
+public class Entry<K,V> implements InterfaceEntry<K,V> {
 	
 	private K key;
 	public V value;
