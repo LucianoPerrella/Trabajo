@@ -1,9 +1,11 @@
 package clases;
 
+import java.util.Iterator;
+
 import Excepciones.MyException;
 import interfaces.InterfaceList;
 
-public class LinkedList <Generico> implements InterfaceList<Generico> {
+public class LinkedList <Generico> implements InterfaceList<Generico>, Iterable<Generico> {
 	
 	protected DNode<Generico> head;
 	protected int size;
@@ -157,4 +159,32 @@ public class LinkedList <Generico> implements InterfaceList<Generico> {
 	public int getSize() {
 		return size;
 	}
+
+private class LinkedListIterator implements Iterator<Generico> {
+		
+		private DNode<Generico> current = head;
+
+		@Override
+		public boolean hasNext() {
+			// TODO Auto-generated method stub
+			return current != null;
+		}
+
+		@Override
+		public Generico next() {
+			// TODO Auto-generated method stub
+			if (!hasNext()) {
+				throw new MyException("No existe elemento siguiente");
+			}
+			Generico elem = current.getElement();
+			current = current.getNext();
+			return elem;
+		}
+		
+	}
+
+@Override
+public Iterator<Generico> iterator() {
+	return new LinkedListIterator();
+}
 }
