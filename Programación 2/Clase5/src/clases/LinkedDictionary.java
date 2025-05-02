@@ -1,5 +1,6 @@
 package clases;
 
+import Excepciones.MyException;
 import interfaces.InterfaceDictionary;
 
 public class LinkedDictionary<K,V> implements InterfaceDictionary<K,V> {
@@ -7,13 +8,11 @@ public class LinkedDictionary<K,V> implements InterfaceDictionary<K,V> {
 	private DNode<Entry<K,LinkedList<V>>> tail;
 	private int size;
 
-//	----------Constructor----------
 	public LinkedDictionary() {
 		head = null;
 		tail = null;
 		size = 0;
 	}
-	
 
 	@Override
 	public int size() {
@@ -27,26 +26,23 @@ public class LinkedDictionary<K,V> implements InterfaceDictionary<K,V> {
 
 	@Override
 	public Iterable<V> get(K k) {
-		if(size == 0) {
-			return null;
-		}
+		if (size == 0) return null;
+		
 		DNode<Entry<K,LinkedList<V>>> actual = head;
-		while(actual != null && actual.getElement().getKey() != k) {
+		while (actual != null && !actual.getElement().getKey().equals(k)) {
 			actual = actual.getNext();
 		}
-		if(actual != null) {
+		if (actual != null) {
 			LinkedList<V> listaValores = actual.getElement().getValue();
 			LinkedList<V> copia = new LinkedList<V>();
 			listaValores.First();
-			while(!listaValores.atEnd()) {
+			while (!listaValores.atEnd()) {
 				copia.addLast(listaValores.getCurrent());
 				listaValores.advance();
 			}
 			return copia;
 		}
-		else {
-			return null;
-		}
+		return null;
 	}
 
 	@Override
@@ -54,33 +50,128 @@ public class LinkedDictionary<K,V> implements InterfaceDictionary<K,V> {
 		if (size == 0) {
 			LinkedList<V> listaValores = new LinkedList<V>();
 			listaValores.addFirst(v);
-			
+			Entry<K,LinkedList<V>> entrada = new Entry<K,LinkedList<V>>(k,listaValores);
+			DNode<Entry<K,LinkedList<V>>> nuevoNodo = new DNode<>(entrada,null,null);
+			head = nuevoNodo;
+			tail = nuevoNodo;
+			size++;
+			return;
 		}
-		
+
+		DNode<Entry<K,LinkedList<V>>> actual = head;
+		while (actual != null && !actual.getElement().getKey().equals(k)) {
+			actual = actual.getNext();
+		}
+
+		if (actual != null) {
+			actual.getElement().getValue().addLast(v);
+		} else {
+			LinkedList<V> listaValores = new LinkedList<V>();
+			listaValores.addFirst(v);
+			Entry<K,LinkedList<V>> entrada = new Entry<K,LinkedList<V>>(k,listaValores);
+			DNode<Entry<K,LinkedList<V>>> nuevoNodo = new DNode<>(entrada,null,tail);
+			tail.setNext(nuevoNodo);
+			tail = nuevoNodo;
+			size++;
+		}
 	}
 
 	@Override
 	public Iterable<V> remove(K k) {
-		// TODO Auto-generated method stub
-		return null;
+		if (size == 0) return null;
+
+		DNode<Entry<K,LinkedList<V>>> actual = head;
+		while (actual != null && !actual.getElement().getKey().equals(k)) {
+			actual = actual.getNext();
+		}
+
+		if (actual == null) return null;
+
+		LinkedList<V> listaValores = actual.getElement().getValue();
+		LinkedList<V> copiaValores = new LinkedList<V>();
+		listaValores.First();
+		while (!listaValores.atEnd()) {
+			copiaValores.addLast(listaValores.getCurrent());
+			listaValores.advance();
+		}
+
+		if (actual == head) {
+			head = head.getNext();
+			if (head != null) head.setPrevious(null);
+			else tail = null;
+		} else {
+			actual.getPrevious().setNext(actual.getNext());
+			if (actual.getNext() != null) {
+				actual.getNext().setPrevious(actual.getPrevious());
+			} else {
+				tail = actual.getPrevious();
+			}
+		}
+		size--;
+		return copiaValores;
 	}
 
 	@Override
 	public V remove(K k, V v) {
-		// TODO Auto-generated method stub
+		if (size == 0) return null;
+
+		DNode<Entry<K, LinkedList<V>>> actual = head;
+		while (actual != null && !actual.getElement().getKey().equals(k)) {
+			actual = actual.getNext();
+		}
+		if (actual != null) {
+			LinkedList<V> listaValores = actual.getElement().getValue();
+			try {
+				listaValores.remove(v);
+				if (listaValores.getSize() == 0) {
+					if (actual == head) {
+						head = head.getNext();
+						if (head != null) head.setPrevious(null);
+						else tail = null;
+					} else {
+						actual.getPrevious().setNext(actual.getNext());
+						if (actual.getNext() != null) {
+							actual.getNext().setPrevious(actual.getPrevious());
+						} else {
+							tail = actual.getPrevious();
+						}
+					}
+					size--;
+				}
+				return v;
+			} catch (MyException e) {
+				return null;
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public Iterable<K> keys() {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedList<K> claves = new LinkedList<K>();
+		DNode<Entry<K, LinkedList<V>>> actual = head;
+		while (actual != null) {
+			claves.addLast(actual.getElement().getKey());
+			actual = actual.getNext();
+		}
+		return claves;
 	}
 
 	@Override
 	public Iterable<Entry<K, Iterable<V>>> entries() {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedList<Entry<K, Iterable<V>>> entradas = new LinkedList<>();
+		DNode<Entry<K, LinkedList<V>>> actual = head;
+		while (actual != null) {
+			LinkedList<V> listaValores = actual.getElement().getValue();
+			LinkedList<V> copiaValores = new LinkedList<>();
+			listaValores.First();
+			while (!listaValores.atEnd()) {
+				copiaValores.addLast(listaValores.getCurrent());
+				listaValores.advance();
+			}
+			entradas.addLast(new Entry<K, Iterable<V>>(actual.getElement().getKey(), copiaValores));
+			actual = actual.getNext();
+		}
+		return entradas;
 	}
-
 }
