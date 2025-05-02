@@ -1,7 +1,7 @@
 package clases;
 
-import Excepciones.MyException;
 import interfaces.InterfaceQueue;
+import interfaces.MyException;
 
 public class LinkedQueue<E> implements InterfaceQueue<E> {
 	private DNode<E> f;

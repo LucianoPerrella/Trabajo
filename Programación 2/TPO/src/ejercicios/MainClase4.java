@@ -1,10 +1,9 @@
-package main;
+package ejercicios;
 
-import clases.ArrayQueue;
 import clases.ArrayStack;
 import clases.LinkedQueue;
 
-public class MainCuartoEjercicio {
+public class MainClase4 {
 	
 	
 	public static ArrayStack<LinkedQueue<Integer>> Ejercicio(ArrayStack<LinkedQueue<Integer>> p1, ArrayStack<LinkedQueue<Integer>> p2){

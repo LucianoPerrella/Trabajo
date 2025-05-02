@@ -1,6 +1,6 @@
 package quintoEjercicio;
 
-public class Main {
+public class MainClase2 {
 
 	public static void main(String[] args) {
 		

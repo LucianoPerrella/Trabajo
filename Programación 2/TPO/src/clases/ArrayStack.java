@@ -1,6 +1,6 @@
 package clases;
 
-import Excepciones.MyException;
+import interfaces.MyException;
 import interfaces.Stack;
 
 public class ArrayStack<T> implements Stack<T> {

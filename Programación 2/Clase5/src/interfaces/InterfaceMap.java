@@ -10,5 +10,5 @@ public interface InterfaceMap<K extends Comparable<K>,V> {
 	public V remove(K k);
 	public K[] keys();
 	public V[] values();
-	public Entry<K,V> entries();
+	public Entry<K,V>[] entries();
 	}
