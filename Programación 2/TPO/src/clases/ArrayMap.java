@@ -33,7 +33,7 @@ public class ArrayMap<K extends Comparable<K>,V> implements InterfaceMap<K,V> {
 		boolean encontrado = false;
 		
 		while(!encontrado && i<size) {
-			if(array[i].getKey() == k) {
+			if(array[i].getKey().equals(k)) {
 				encontrado = true;
 			}else {
 				i++;
@@ -52,8 +52,8 @@ public class ArrayMap<K extends Comparable<K>,V> implements InterfaceMap<K,V> {
 		int i = 0;
 		boolean encontrado = false;
 		
-		while(i < size && array[i].getKey() != k ) {
-			if(array[i].getKey() == k) {
+		while(i < size && !encontrado ) {
+			if(array[i].getKey().equals(k)) {
 				encontrado = true;
 			}else {
 				i++;
@@ -81,7 +81,7 @@ public class ArrayMap<K extends Comparable<K>,V> implements InterfaceMap<K,V> {
 		boolean encontrado = false;
 		
 		while(i < size && !encontrado) {
-			if(array[i].getKey() == k) {
+			if(array[i].getKey().equals(k)) {
 				encontrado = true;
 			}else {
 				i++;
@@ -125,5 +125,18 @@ public class ArrayMap<K extends Comparable<K>,V> implements InterfaceMap<K,V> {
 		}
 		return aux;
 	}
+	
+	 @Override
+	    public String toString() {
+	    	String stringRetorno = "";
+	    	if(size == 0) {
+	    		return "La lista está vacía, no hay datos para mostrar";
+	    	}
+	    	for(int i = 0; i < size; i++) {
+	    		stringRetorno = stringRetorno + "Clave: " + array[i].getKey() + " Valores: " + array[i].getValue() + "\n";
+	    		
+	    	}
+	    	return stringRetorno;
+	    }
 
 }

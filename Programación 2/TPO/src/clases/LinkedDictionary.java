@@ -25,23 +25,27 @@ public class LinkedDictionary<K,V> implements InterfaceDictionary<K,V> {
 		return size == 0;
 	}
 
+	private LinkedList<V> copiarListaValores(LinkedList<V> original) {
+		LinkedList<V> copia = new LinkedList<V>();
+		original.First();
+		while (!original.atEnd()) {
+			copia.addLast(original.getCurrent());
+			original.advance();
+		}
+		return copia;
+	}
+
 	@Override
 	public Iterable<V> get(K k) {
-		if (size == 0) return null;
-		
+		if (size == 0) {
+			return null;
+		}
 		DNode<Entry<K,LinkedList<V>>> actual = head;
 		while (actual != null && !actual.getElement().getKey().equals(k)) {
 			actual = actual.getNext();
 		}
 		if (actual != null) {
-			LinkedList<V> listaValores = actual.getElement().getValue();
-			LinkedList<V> copia = new LinkedList<V>();
-			listaValores.First();
-			while (!listaValores.atEnd()) {
-				copia.addLast(listaValores.getCurrent());
-				listaValores.advance();
-			}
-			return copia;
+			return copiarListaValores(actual.getElement().getValue());
 		}
 		return null;
 	}
@@ -58,12 +62,10 @@ public class LinkedDictionary<K,V> implements InterfaceDictionary<K,V> {
 			size++;
 			return;
 		}
-
 		DNode<Entry<K,LinkedList<V>>> actual = head;
 		while (actual != null && !actual.getElement().getKey().equals(k)) {
 			actual = actual.getNext();
 		}
-
 		if (actual != null) {
 			actual.getElement().getValue().addLast(v);
 		} else {
@@ -79,27 +81,27 @@ public class LinkedDictionary<K,V> implements InterfaceDictionary<K,V> {
 
 	@Override
 	public Iterable<V> remove(K k) {
-		if (size == 0) return null;
-
+		if (size == 0) {
+			return null;
+		}
 		DNode<Entry<K,LinkedList<V>>> actual = head;
 		while (actual != null && !actual.getElement().getKey().equals(k)) {
 			actual = actual.getNext();
 		}
-
-		if (actual == null) return null;
-
-		LinkedList<V> listaValores = actual.getElement().getValue();
-		LinkedList<V> copiaValores = new LinkedList<V>();
-		listaValores.First();
-		while (!listaValores.atEnd()) {
-			copiaValores.addLast(listaValores.getCurrent());
-			listaValores.advance();
+		if (actual == null) {
+			return null;
 		}
+
+		LinkedList<V> copiaValores = copiarListaValores(actual.getElement().getValue());
 
 		if (actual == head) {
 			head = head.getNext();
-			if (head != null) head.setPrevious(null);
-			else tail = null;
+			if (head != null) {
+				head.setPrevious(null);
+			}
+			else {
+				tail = null;
+			}
 		} else {
 			actual.getPrevious().setNext(actual.getNext());
 			if (actual.getNext() != null) {
@@ -112,39 +114,32 @@ public class LinkedDictionary<K,V> implements InterfaceDictionary<K,V> {
 		return copiaValores;
 	}
 
-	
 	@Override
 	public V remove(K k, V v) {
 	    if (size == 0) {
 	        return null;
 	    }
-
 	    DNode<Entry<K, LinkedList<V>>> actual = head;
-
-	    // Buscar la clave
 	    while (actual != null && !actual.getElement().getKey().equals(k)) {
 	        actual = actual.getNext();
 	    }
-
 	    if (actual != null) {
 	        LinkedList<V> listaValores = actual.getElement().getValue();
 	        try {
-	            listaValores.remove(v);  // Puede lanzar MyException si no encuentra el valor
-
+	            listaValores.remove(v); 
 	            if (listaValores.getSize() == 0) {
-	                // Eliminar el nodo del diccionario
 	                if (actual == head && actual == tail) {
 	                    head = null;
 	                    tail = null;
 	                } else if (actual == head) {
 	                    head = head.getNext();
 	                    if (head != null) {
-	                        head.setPrevious(null);
+	                    	head.setPrevious(null);
 	                    }
 	                } else if (actual == tail) {
 	                    tail = tail.getPrevious();
 	                    if (tail != null) {
-	                        tail.setNext(null);
+	                    	tail.setNext(null);
 	                    }
 	                } else {
 	                    actual.getPrevious().setNext(actual.getNext());
@@ -152,16 +147,14 @@ public class LinkedDictionary<K,V> implements InterfaceDictionary<K,V> {
 	                }
 	                size--;
 	            }
-
 	            return v;
 	        } catch (MyException e) {
-	            return null;  // Valor no encontrado
+	            return null;
 	        }
 	    } else {
-	        return null;  // Clave no encontrada
+	        return null;
 	    }
 	}
-
 
 	@Override
 	public Iterable<K> keys() {
@@ -179,16 +172,12 @@ public class LinkedDictionary<K,V> implements InterfaceDictionary<K,V> {
 		LinkedList<Entry<K, Iterable<V>>> entradas = new LinkedList<>();
 		DNode<Entry<K, LinkedList<V>>> actual = head;
 		while (actual != null) {
-			LinkedList<V> listaValores = actual.getElement().getValue();
-			LinkedList<V> copiaValores = new LinkedList<>();
-			listaValores.First();
-			while (!listaValores.atEnd()) {
-				copiaValores.addLast(listaValores.getCurrent());
-				listaValores.advance();
-			}
+			LinkedList<V> copiaValores = copiarListaValores(actual.getElement().getValue());
 			entradas.addLast(new Entry<K, Iterable<V>>(actual.getElement().getKey(), copiaValores));
 			actual = actual.getNext();
 		}
 		return entradas;
 	}
+	
+	
 }
